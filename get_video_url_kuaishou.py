@@ -3,13 +3,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-from get_logger import logger
-from writeCookie import login_by_cookie
 
-
-pv = 0
-
-
+# 浏览器设置
 def open_chrome_browser():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
@@ -17,14 +12,12 @@ def open_chrome_browser():
     driver.implicitly_wait(8)  # 最大等待时间
     return driver
 
-
 # 登录
 def login_and_search(driver, keyword):
     # 打开搜索页面
     url = "https://www.kuaishou.com/search/video?searchKey="+keyword
     driver.get(url)
     time.sleep(3)
-
 
 def get_current_video_info(driver, video):
     video_data = {}
@@ -38,7 +31,6 @@ def get_current_video_info(driver, video):
     video_data["videoPageUrl"] = driver.current_url
     # logger.info(f"当前视频信息:{video_data}")
     return video_data
-
 
 def get_current_viedo_author_info(driver):
     user_data = {}
